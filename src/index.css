@@ -1,4 +1,26 @@
 body {
   background-color: #0f1419;
   color: #828c99;
+  font-family: sans-serif;
+}
+
+label {
+  margin: 0 0.5rem 0 0;
+}
+
+h1 {
+  color: #ffb454;
+}
+
+input {
+  background-color: #0f1314;
+  border-radius: 0.5rem;
+  border: 1px solid #828c99;
+  padding: 8px;
+  color: #828c99;
+}
+
+input:focus {
+  border: 1px solid #ffb454;
+  outline: none;
 }
