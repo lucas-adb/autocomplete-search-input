@@ -1,11 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import AutocompleteSearchInput from './components/AutocompleteSearchInput';
-
-const dataListOptions = [
-  { value: 'banana', label: 'Banana' },
-  { value: 'apple', label: 'Apple' },
-  { value: 'orange', label: 'Orange' },
-];
 
 interface City {
   nome: string;
@@ -16,6 +10,17 @@ interface City {
 function App() {
   const [query, setQuery] = useState('');
   const [cities, setCities] = useState<City[]>([]);
+
+  const dataList = useMemo(() => {
+    if (cities.length === 0) return [];
+
+    return cities.map((city) => {
+      return {
+        value: city.nome,
+        label: city.nome,
+      };
+    });
+  }, [cities]);
 
   useEffect(() => {
     if (!query.trim()) {
@@ -52,8 +57,6 @@ function App() {
     setQuery(event.target.value);
   };
 
-  console.log('cities', cities);
-
   return (
     <>
       <h1>Autocomplete Search Input</h1>
@@ -61,7 +64,7 @@ function App() {
       <AutocompleteSearchInput
         query={query}
         handleQueryChange={handleQueryChange}
-        dataListOptions={dataListOptions}
+        dataListOptions={dataList}
       />
     </>
   );
